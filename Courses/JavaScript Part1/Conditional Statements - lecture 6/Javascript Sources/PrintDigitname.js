@@ -1,0 +1,50 @@
+/*
+ * Write program that asks for a digit and depending on the input 
+ * shows the name of that digit (in English) using a switch statement.
+ */
+
+(function() {
+    var digitChar = (prompt("Please enter a digit"));
+
+//check for invalid input
+    if (digitChar === undefined || digitChar.length > 1) {
+        console.log("Invalid input detected." + digitChar + " is a string or number but not a digit.");
+    } else {
+        switch (digitChar)
+        {
+            case "0":
+                console.log("The name of the digit " + digitChar + " is \"zero\".");
+                break;
+            case "1":
+                console.log("The name of the digit " + digitChar + " is \"one\".");
+                break;
+            case "2":
+                console.log("The name of the digit " + digitChar + " is \"two\".");
+                break;
+            case "3":
+                console.log("The name of the digit " + digitChar + " is \"three\".");
+                break;
+            case "4":
+                console.log("The name of the digit " + digitChar + " is \"four\".");
+                break;
+            case "5":
+                console.log("The name of the digit " + digitChar + " is \"five\".");
+                break;
+            case "6":
+                console.log("The name of the digit " + digitChar + " is \"six\".");
+                break;
+            case "7":
+                console.log("The name of the digit " + digitChar + " is \"seven\".");
+                break;
+            case "8":
+                console.log("The name of the digit " + digitChar + " is \"eight\".");
+                break;
+            case "9":
+                console.log("The name of the digit " + digitChar + " is \"nine\".");
+                break;
+            default:
+                console.log("An error occured. Please try again");
+                break;
+        }
+    }
+})();

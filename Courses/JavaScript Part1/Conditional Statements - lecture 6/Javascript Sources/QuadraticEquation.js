@@ -1,0 +1,34 @@
+/*
+ * Write a program that enters the coefficients a, b and c of a quadratic equation
+ * a*x2 + b*x + c = 0 and calculates and prints its real roots. 
+ * Note that quadratic equations may have 0, 1 or 2 real roots.
+ */
+
+(function (){
+
+    var firstParameter = prompt("Please fill the values a,b and c of the equation ax2+bx+c=0\nEnter the first parameter a:");
+    var secondParameter = prompt("Enter the second parameter b:");
+    var thirdParameter = prompt("Enter the third parameter c:");
+
+        //calculating the Discriminant of the eqation D = b^2 - 4ac
+        var discriminant = Math.pow(secondParameter, 2) - (4 * firstParameter * thirdParameter);
+        if (discriminant < 0)
+        {
+            console.log("The equation has no real roots.");
+        }
+        else if (discriminant === 0)
+        {
+            var root = -(secondParameter / (2 * firstParameter));
+            console.log("The equation has one root:" + root);
+        }
+        else if (discriminant > 0)
+        {
+            var firstRoot = (float)((-secondParameter) + Math.Sqrt(discriminant)) / (2 * firstParameter);
+            var secondRoot = (float)((-secondParameter) - Math.Sqrt(discriminant)) / (2 * firstParameter);
+            console.log("The equation has two roots:\n" + firstRoot + "\n" + secondRoot);
+        }
+        else
+        {
+            console.log("The equation has invalid parameters. Please try again.");
+        }
+})();

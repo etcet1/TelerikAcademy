@@ -1,0 +1,68 @@
+/*
+ * Sort 3 real values in descending order using nested if statements.
+ */
+
+(function() {
+    var firstNumber = 18;
+    var secondNumber = 7;
+    var thirdNumber = 11;
+
+    console.log("The first number is:" + firstNumber);
+    console.log("The second number is:" + secondNumber);
+    console.log("The third number is:" + thirdNumber);
+
+    console.log("\nNumbers sorted in descending order:");
+    if (firstNumber > secondNumber && firstNumber > thirdNumber)
+    {
+        console.log(firstNumber);
+
+        //if the numbers are equal there is no matter how they will be printed
+        if (secondNumber >= thirdNumber)
+        {
+            console.log(secondNumber);
+            console.log(thirdNumber);
+        }
+        else if (thirdNumber > secondNumber)
+        {
+            console.log(thirdNumber);
+            console.log(secondNumber);
+        }
+    }
+    else if (secondNumber > firstNumber && secondNumber > thirdNumber)
+    {
+        console.log(secondNumber);
+        //if the numbers are equal there is no matter how they will be printed
+        if (firstNumber >= thirdNumber)
+        {
+            console.log(firstNumber);
+            console.log(thirdNumber);
+        }
+        else if (thirdNumber > firstNumber)
+        {
+            console.log(thirdNumber);
+            console.log(firstNumber);
+        }
+    }
+    else if (thirdNumber > firstNumber && thirdNumber > secondNumber)
+    {
+        console.log(thirdNumber);
+        //if the numbers are equal there is no matter how they will be printed
+        if (firstNumber >= secondNumber)
+        {
+            console.log(firstNumber);
+            console.log(secondNumber);
+        }
+        else if (secondNumber > firstNumber)
+        {
+            console.log(secondNumber);
+            console.log(firstNumber);
+        }
+    }
+    else if (firstNumber === secondNumber && firstNumber === thirdNumber)
+    {
+        console.log("The numbers are equal.");
+        console.log(firstNumber);
+        console.log(secondNumber);
+        console.log(thirdNumber);
+    }
+})();
