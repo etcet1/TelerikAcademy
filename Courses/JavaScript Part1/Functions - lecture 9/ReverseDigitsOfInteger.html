@@ -1,0 +1,50 @@
+﻿<html>
+<head>
+    <title>Functions - Homework</title>
+</head>
+<body>
+	<label for="input">Your input:</label>
+	<br />
+	<input id="input"></input>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 *Write a function that reverses the digits of given decimal number. Example: 256  652
+	 */
+
+
+	function ReverseDigitsOfInteger(integerNumber) {
+
+		//pasing the number in order to remove any spaces if any
+		var integer = parseInt(integerNumber);
+		//converting the integer to string and then to array of digits
+		var digits = integer.toString().split("");
+		
+		var reversedDigits = digits.reverse();
+		
+		var reversedNumber = reversedDigits.join("");
+		
+		return(reversedNumber);
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var input = document.getElementById("input").value;
+		
+		var result = ReverseDigitsOfInteger(input);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		
+		//print the answer
+		console.log(result);
+		document.getElementById("answer").innerHTML = result;
+
+	}));
+    </script>
+</body>
+</html>

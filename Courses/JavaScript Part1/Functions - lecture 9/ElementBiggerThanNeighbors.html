@@ -1,0 +1,88 @@
+﻿<html>
+<head>
+    <title>Functions - Homework</title>
+</head>
+<body>
+	<label for="input">Your input /separate the numbers with comma/:</label>
+	<br />
+	<input id="input"></input>
+	<br />
+	<label for="input">The position of the number:</label>
+	<br />
+	<input id="input2"></input>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 *Write a method that checks if the element at given position in 
+	 *given array of integers is bigger than its two neighbors (when such exist).
+	 */
+
+	function ElementBiggerThanNeighbors(inputString, inputNumber) {
+		var result;
+		var positionNumber = parseInt(inputNumber);
+		var testArray = inputString.split(",");
+
+		for (var i = 0; i < testArray.length; i++) {
+				var number = parseInt(testArray[i]);
+
+				if (!isNaN(number)) {
+						testArray[i] = number;
+				} else {
+						console.log("Invalid input detected.");
+				}
+		}
+
+		//check if element position not in the beginning or at the end of the array
+		if (positionNumber > 0 && positionNumber < testArray.length - 1) {
+			if (testArray[positionNumber] > testArray[positionNumber - 1] && testArray[positionNumber] > testArray[positionNumber + 1]) {
+				result = "The number is bigger than its neighbors.";
+			} else {
+				result = "The number is not bigger than its neighbors.";
+			}
+		} else if (positionNumber === 0) {
+			//element position at the beginning of the array
+
+			if (testArray[positionNumber] > testArray[positionNumber + 1]) {
+				result = "The number is at the beginning of the array and it is bigger than its next neighbor.";
+			} else {
+				result = "The number is not bigger than its neighbors.";
+			}
+
+		} else if (positionNumber === testArray.length - 1) {
+			//element position at the end of the array
+
+			if (testArray[positionNumber] > testArray[positionNumber - 1]) {
+				result = "The number is at the end of the array and it is bigger than its previous neighbor.";
+			} else {
+				result = "The number is not bigger than its neighbors.";
+			}
+		} else {
+			result = -1;
+		}
+
+		return result;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var inputString = document.getElementById("input").value;
+		
+		var inputNumber = document.getElementById("input2").value;
+		
+		var result = ElementBiggerThanNeighbors(inputString, inputNumber);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		
+		//print the answer
+		console.log(result);
+		document.getElementById("answer").innerHTML = result;
+
+	}));
+    </script>
+</body>
+</html>

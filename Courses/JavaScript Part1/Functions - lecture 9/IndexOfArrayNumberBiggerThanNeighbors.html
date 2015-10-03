@@ -1,0 +1,68 @@
+﻿<html>
+<head>
+    <title>Functions - Homework</title>
+</head>
+<body>
+	<label for="input">Your input /separate the numbers with comma/:</label>
+	<br />
+	<input id="input"></input>
+	<br />
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	* Write a function that returns the index of the first element in array that is bigger 
+	* than its neighbors, or -1, if there’s no such element.
+	* Use the function from the previous exercise.
+	*/
+
+
+	function IndexOfElementBiggerThanNeighbors(inputString)	{
+		var testArray = inputString.split(",");
+
+		for (var i = 0; i < testArray.length; i++) {
+			var number = parseInt(testArray[i]);
+			if (!isNaN(number)) {
+				testArray[i] = number;
+			} else {
+				console.log("Invalid input detected.");
+			}
+		}
+		
+		var numberPosition = -1;
+
+		for (var i = 0; i < testArray.length; i++)
+		{
+			//check the elements
+			if (testArray[i] > testArray[i - 1] && testArray[i] > testArray[i + 1]) {
+				numberPosition = i;
+			}
+		}
+		return numberPosition;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var inputString = document.getElementById("input").value;
+				
+		var result = IndexOfElementBiggerThanNeighbors(inputString);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		
+		//print the answer
+		if(result > -1) {
+			console.log("The element bigger than its neighbors is at position " + result);
+			document.getElementById("answer").innerHTML = "The element bigger than its neighbors is at position " + result;
+		} else {
+			console.log("There is no element bigger than its neighbors");
+			document.getElementById("answer").innerHTML = "There is no element bigger than its neighbors";
+		}
+
+	}));
+    </script>
+</body>
+</html>

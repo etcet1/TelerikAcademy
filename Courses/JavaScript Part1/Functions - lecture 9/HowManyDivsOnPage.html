@@ -1,0 +1,47 @@
+﻿<html>
+<head>
+    <title>Functions - Homework</title>
+</head>
+<body>
+	<label for="input">Your element /without opening and closing bracket/:</label>
+	<br />
+	<input id="input"></input>
+	<br />
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * 	Write a function to count the number of divs on the web page
+	 */
+	
+	// added functionality in order to check more elements
+	function CountElements(element) {
+			
+			var result = 0;
+			
+			result = document.getElementsByTagName(element).length;
+			
+			return result;
+	}
+	
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var inputElement = document.getElementById("input").value;
+				
+		var result = CountElements(inputElement);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		
+		//print the answer
+		console.log("The count of the element " + + " is " + result);
+		document.getElementById("answer").innerHTML = "The count of the element " + inputElement + " is " + result;
+
+	}));
+    </script>
+</body>
+</html>

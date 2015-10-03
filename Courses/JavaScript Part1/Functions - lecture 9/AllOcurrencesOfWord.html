@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+    <title>Functions - Homework</title>
+</head>
+<body>
+	<label for="input">Your text:</label>
+	<br />
+	<input id="input"></input>
+	<br />
+	<label for="input">Your word:</label>
+	<br />
+	<input id="input2"></input>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*Write a function that finds all the occurrences of word in a text
+	 *The search can case sensitive or case insensitive
+	 *Use function overloading
+	 */
+
+	function AllOccurencesOfWordInText(inputText, word) {
+		if (word && inputText) {
+			var matches = [];
+			var indexLower = 0;
+
+			var length = word.length;
+			var textLower = inputText.toLowerCase();
+			var wordLower = word.toLowerCase();
+
+			while (true) {
+				indexLower = textLower.indexOf(wordLower, indexLower);
+				if (indexLower === -1) {
+					break;
+				}
+				matches.push(indexLower);
+				indexLower += length;
+			}
+
+			return matches.length;
+		}
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var inputText = document.getElementById("input").value;
+		
+		var word = document.getElementById("input2").value;
+		
+		var result = AllOccurencesOfWordInText(inputText, word);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		
+		//print the answer
+		console.log("The count of the word occurencies is " + result);
+		document.getElementById("answer").innerHTML ="The count of the word occurencies is " + result;
+
+	}));
+    </script>
+</body>
+</html>

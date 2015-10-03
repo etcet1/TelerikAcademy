@@ -1,0 +1,83 @@
+﻿<html>
+<head>
+    <title>Functions - Homework</title>
+</head>
+<body>
+	<label for="input">Your input:</label>
+	<br />
+	<input id="input"></input>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*Write a function that returns the last digit of given 
+	 * integer as an English word. Examples: 512  "two", 1024  "four", 12309  "nine"
+	 */
+
+	function LastDigitOfinteger(integerNumber) {
+		//pasing the number in order to remove any spaces if any
+		var integer = parseInt(integerNumber);
+		
+		//converting the integer to string and then to array of digits
+		var digits = integer.toString().split("");
+
+		var lastDigit = digits.pop();
+
+		switch (lastDigit) {
+			case "1":
+				var digitName = "one";
+				break;
+			case "2":
+				var digitName = "two";
+				break;
+			case "3":
+				var digitName = "three";
+				break;
+			case "4":
+				var digitName = "four";
+				break;
+			case "5":
+				var digitName = "five";
+				break;
+			case "6":
+				var digitName = "six";
+				break;
+			case "7":
+				var digitName = "seven";
+				break;
+			case "8":
+				var digitName = "eight";
+				break;
+			case "9":
+				var digitName = "nine";
+				break;
+			case "0":
+				var digitName = "zero";
+				break;
+			default :
+				var digitName = "No such digit" +  lastDigit;
+		}
+		
+		return "The name of the digit " + lastDigit + " is \"" +digitName + "\"";
+		
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var input = document.getElementById("input").value;
+		
+		var result = LastDigitOfinteger(input);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		
+		//print the answer
+		console.log(result);
+		document.getElementById("answer").innerHTML = result;
+
+	}));
+    </script>
+</body>
+</html>
