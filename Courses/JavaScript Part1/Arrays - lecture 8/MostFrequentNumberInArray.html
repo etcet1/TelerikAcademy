@@ -1,0 +1,66 @@
+﻿<html>
+<head>
+    <title>Arrays - Homework</title>
+</head>
+<body>
+	<label for="input">Your input /use comma as separator/:</label>
+	<br />
+	<input id="input">
+	<br />
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a program that finds the most frequent number in an array. Example:
+	 * {4, 1, 1, 4, 2, 3, 4, 4, 1, 2, 4, 9, 3}  4 (5 times)
+	 */
+
+
+	function MostFrequentNumberInArray(inputString) {
+
+		var testArray = inputString.split(",");
+
+		for (var i = 0; i < testArray.length; i++) {
+			var number = parseInt(testArray[i]);
+
+			if (!isNaN(number)) {
+				testArray[i] = number;
+			} else {
+				console.log("Invalid input detected.");
+			}
+		}
+		
+		var count = 0;
+		
+		for (var i = 0; i < testArray.length; i++) {
+			var temp = 0;
+			for (var j = 0; j < testArray.length; j++)
+			{
+				if (testArray[i] === testArray[j]) {
+					temp++;
+				}
+			}
+			if (temp > count) {
+				var count = temp;
+				var numberInArray = testArray[i];
+			}
+		}
+		console.log("The most frequent number is " + numberInArray + " -> " + count + " times");
+		document.getElementById("answer").innerHTML = "The most frequent number is " + numberInArray + " -> " + count + " times";
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var input = document.getElementById("input").value;
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		MostFrequentNumberInArray(input);
+
+	}));
+    </script>
+</body>
+</html>

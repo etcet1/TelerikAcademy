@@ -1,0 +1,73 @@
+﻿<html>
+<head>
+    <title>Arrays - Homework</title>
+</head>
+<body>
+	<label for="input">Your input /use comma as separator/:</label>
+	<br />
+	<input id="input">
+	<br />
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*Sorting an array means to arrange its elements in increasing order. 
+	 *Write a program to sort an array. Use the "selection sort" algorithm: 
+	 *Find the smallest element, move it at the first position, find the smallest 
+	 *from the rest, move it at the second position, etc.
+	 */
+
+	function SortingArray(inputString) {
+
+		var testArray = inputString.split(",");
+
+		for (var i = 0; i < testArray.length; i++) {
+			var number = parseInt(testArray[i]);
+
+			if (!isNaN(number)) {
+				testArray[i] = number;
+			} else {
+				console.log("Invalid input detected.");
+			}
+		}
+
+		console.log("The unsorted array is " + testArray.join(", "));
+		document.getElementById("answer").innerHTML = "The unsorted array is " + testArray.join(", ") + "\n";
+
+		var temp;
+		var minValueIndex = 0;
+		for (var i = 0; i < testArray.length; i++)
+		{
+			var minValue = Number.MAX_VALUE;
+			for (var j = minValueIndex; j < testArray.length; j++)
+			{
+				//if element is lower than minValue switch values of the two elements
+				if (testArray[j] < minValue)
+				{
+					temp = testArray[minValueIndex];
+					minValue = testArray[j];
+					testArray[minValueIndex] = testArray[j];
+					testArray[j] = temp;
+				}
+			}
+			//switch to the nex array position as the current already contains the minimum value
+			minValueIndex++;
+		}
+		console.log("The sorted array is " + testArray.join(", "));
+		document.getElementById("answer").innerHTML += "The sorted array is " + testArray.join(", ");
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var input = document.getElementById("input").value;
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		SortingArray(input);
+
+	}));
+    </script>
+</body>
+</html>

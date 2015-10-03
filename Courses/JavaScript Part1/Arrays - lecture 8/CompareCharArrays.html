@@ -1,0 +1,83 @@
+﻿<html>
+<head>
+    <title>Arrays - Homework</title>
+</head>
+<body>
+	<label for="input">Your input - first string:</label>
+	<br />
+	<input id="input"></input>
+	<br />
+	<label for="input2">Your input - second string:</label>
+	<br />
+	<input id="input2"></input>
+	<br />
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a program that compares two char arrays lexicographically (letter by letter).
+	 */
+
+	function CompareCharArrays(firstString, secondString) {
+		
+        if (firstString.length <= secondString.length)
+        {
+            console.log("The comparisson will be run for the length of first string as it is shorter or equal - " + firstString.length + " elements\n");
+            document.getElementById("answer").innerHTML += "The comparisson will be run for the length of first string as it is shorter or equal - " + firstString.length + " elements\n";
+			
+			for (var k = 0; k < firstString.length; k++)
+            {
+                if (firstString[k] == secondString[k])
+                {
+                    console.log("The values of element " + k + " of both arrays are equal,e.g. " + firstString[k] + " = " + secondString[k] + ".\n");
+					
+					document.getElementById("answer").innerHTML += "The values of element " + k + " of both arrays are equal,e.g. " + firstString[k] + " = " + secondString[k] + ".\n";
+                }
+                else
+                {
+                    console.log("The values of element " + k + " of both arrays are not equal,e.g. " + firstString[k] + " != " + secondString[k] + ".\n");
+					
+					document.getElementById("answer").innerHTML += "The values of element " + k + " of both arrays are not equal,e.g. " + firstString[k] + " != " + secondString[k] + ".\n";
+                }
+            }
+        }
+        else
+        {
+            console.log("The comparisson will be run for the length of second string as it is shorter - " + secondString.length + " elements\n");
+			document.getElementById("answer").innerHTML += "The comparisson will be run for the length of second string as it is shorter - " + secondString.length + " elements\n";
+            
+			for (var k = 0; k < secondString.length; k++)
+            {
+                if (firstString[k] == secondString[k])
+                {
+                    console.log("The values of element " + k + " of both arrays are equal,e.g. " + firstString[k] + " = " + secondString[k] + ".\n");
+					
+					document.getElementById("answer").innerHTML += "The values of element " + k + " of both arrays are equal,e.g. " + firstString[k] + " = " + secondString[k] + ".\n";
+                }
+                else
+                {
+                    console.log("The values of element " + k + " of both arrays are not equal,e.g. " + firstString[k] + " != " + secondString[k] + ".");
+					
+					document.getElementById("answer").innerHTML += "The values of element " + k + " of both arrays are not equal,e.g. " + firstString[k] + " != " + secondString[k] + ".\n";
+                }
+            }
+        }
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var input = document.getElementById("input").value;
+		
+		var input2 = document.getElementById("input2").value;
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		CompareCharArrays(input, input2);
+
+	}));
+    </script>
+</body>
+</html>

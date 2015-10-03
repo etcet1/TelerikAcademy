@@ -1,0 +1,47 @@
+﻿<html>
+<head>
+    <title>Arrays - Homework</title>
+</head>
+<body>
+	<label for="input">Your input /separate the numbers with comma/:</label>
+	<br />
+	<input id="input"></input>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a script that allocates array of 20 integers and initializes each element 
+	 * by its index multiplied by 5. Print the obtained array on the console.
+	 */
+
+	function IncreaseArrayElemntsBy5(inputString) {
+			
+			//convert the tring to array and parse integers
+			var arrayNumbers = [];
+			var tempNumberArray = inputString.split(",");
+			
+			for (var i = 0; i < tempNumberArray.length; i++) {
+				var tempNumber = parseInt(tempNumberArray[i]);
+				
+				if(!isNaN(tempNumber)) {
+					arrayNumbers[i] = tempNumber * 5;
+				}
+            }
+
+            console.log("The array with values multiplied by 5 is " + arrayNumbers.toString());
+            
+			document.getElementById("answer").innerHTML = "The array with values multiplied by 5 is " + arrayNumbers.toString();
+		}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var input = document.getElementById("input").value;
+		
+		IncreaseArrayElemntsBy5(input);
+
+	}));
+    </script>
+</body>
+</html>

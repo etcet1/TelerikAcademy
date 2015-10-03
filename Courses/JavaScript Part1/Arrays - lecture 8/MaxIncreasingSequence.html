@@ -1,0 +1,71 @@
+﻿<html>
+<head>
+    <title>Arrays - Homework</title>
+</head>
+<body>
+	<label for="input">Your input /use comma as separator/:</label>
+	<br />
+	<input id="input">
+	<br />
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a program that finds the maximal increasing sequence in an array. 
+	 * Example: {3, 2, 3, 4, 2, 2, 4} - {2, 3, 4}.
+	 */
+
+	function MaxIncreasingSequence(inputString) {
+
+		var testArray = inputString.split(",");
+
+		for (var i = 0; i < testArray.length; i++) {
+			var number = parseInt(testArray[i]);
+			
+			if (!isNaN(number)) {
+				testArray[i] = number;
+			} else {
+				console.log("Invalid input detected.");
+			}
+		}
+
+		var countNumber = [];
+		var resultNumber = [];
+
+		for (var i = 0; i < testArray.length; i++) {
+			
+			countNumber.push(testArray[i]);
+			
+			for (var j = i; j < testArray.length - 1; j++) {
+				if (testArray[j] + 1 === testArray[j + 1]) {
+					countNumber.push(testArray[j + 1]);
+				} else {
+					break;
+				}
+			}
+			if (countNumber.length > resultNumber.length) {
+				resultNumber = countNumber;
+				countNumber = [];
+			} else {
+				countNumber = [];
+			}
+		}
+		console.log("The maximal increasing sequence of elements in the array " + testArray.join(", ")  + " is " + resultNumber.join(","));
+		document.getElementById("answer").innerHTML = "The maximal increasing sequence of elements in the array " + testArray.join(", ")  + " is " + resultNumber.join(",");
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    
+		var input = document.getElementById("input").value;
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		MaxIncreasingSequence(input);
+
+	}));
+    </script>
+</body>
+</html>
