@@ -1,0 +1,235 @@
+﻿<html>
+<head>
+    <title>Operators and expressions - Homework</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="js-console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        //01.Write an expression that checks if given integer is odd or even.
+
+        jsConsole.writeLine("<br/>01.Write an expression that checks if given integer is odd or even.<br/>");
+
+        function IsOdd(number) {
+            if (Math.abs(number) % 2 === 1) {
+                console.log("Number " + number + " is odd.");
+                //print on screen
+                jsConsole.writeLine("Number " + number + " is odd.");
+            } else {
+                console.log("Number " + number + " is even.");
+                //print on screen
+                jsConsole.writeLine("Number " + number + " is even.");
+            }
+        }
+
+        (function () {
+            var number = new Number(prompt("01.Please enter a number or use the default", 1334));
+            if (number != null) {
+                IsOdd(number);
+            }
+        })();
+
+        //02. Write a boolean expression that checks for given integer if it can be divided (without remainder) by 7 and 5 in the same time.
+
+        jsConsole.writeLine("<br/>02.Write a boolean expression that checks for given integer if it can be divided (without remainder) by 7 and 5 in the same time.<br/>");
+
+        function IsDivisiableBy7And5(number) {
+            var divisibleCheck = ((Math.abs(number) % 5 !== 0) || (Math.abs(number) % 7 !== 0)) ? false : true;
+            if (divisibleCheck === true) {
+                console.log("Number " + number + " is divisable by 7 and 5.");
+                //print on screen
+                jsConsole.writeLine("Number " + number + " is divisable by 7 and 5.");
+            } else {
+                console.log("Number " + number + " is NOT divisable by 7 and 5.");
+                //print on screen
+                jsConsole.writeLine("Number " + number + " is NOT divisable by 7 and 5.");
+            }
+        }
+
+        (function () {
+            var number = new Number(prompt("02.Please enter a number or use the default", 35));
+            if (number != null) {
+                IsDivisiableBy7And5(number);
+            }
+        })();
+
+        //03. Write an expression that calculates rectangle’s area by given width and height.
+
+        jsConsole.writeLine("<br/>03. Write an expression that calculates rectangle’s area by given width and height.<br/>");
+
+        function CalculateReactangleArea(width, height) {
+            var rectangleArea = width * height;
+            console.log("The area of rectangle with width " + width + " and heigth " + height + " is " + rectangleArea + ".");
+            //print on screen
+            jsConsole.writeLine("The area of rectangle with width " + width + " and heigth " + height + " is " + rectangleArea + ".");
+        }
+
+        (function () {
+            var width = new Number(prompt("03.Please enter the width or use the default", 12));
+            var height = new Number(prompt("Please enter the height or use the default", 6));
+            if (width != null && height != null) {
+                CalculateReactangleArea(width, height);
+            }
+        })();
+
+        //04. Write an expression that checks for given integer if its third digit (right-to-left) is 7. E. g. 1732 -> true.
+
+        jsConsole.writeLine("<br/>04. Write an expression that checks for given integer if its third digit (right-to-left) is 7. E. g. 1732 -> true.<br/>");
+
+        function CheckThirdDigit(number) {
+            //reversing the number and converting it first to string and then to array
+            var numbersArray = (number).toString().split('').reverse();
+            var isDigitSeven = numbersArray[2] === "7" ? true : false;
+            console.log("The third digit of " + number + " is 7 -> " + isDigitSeven + ".");
+            //print on screen
+            jsConsole.writeLine("The third digit of " + number + " is 7 -> " + isDigitSeven + ".");
+        }
+
+        (function () {
+            var number = new Number(prompt("04.Please enter the number or use the default", 1732));
+            if (number != null) {
+                CheckThirdDigit(number);
+            }
+        })();
+
+        //05. Write a boolean expression for finding if the bit 3 (counting from 0) of a given integer is 1 or 0.
+
+        jsConsole.writeLine("<br/>05. Write a boolean expression for finding if the bit 3 (counting from 0) of a given integer is 1 or 0.<br/>");
+
+        function CheckThirdBit(number) {
+            var bitPosition = 3;
+            var mask = 1 << bitPosition;
+            var resultMask = number & mask;
+            var bit = resultMask >> bitPosition;
+            console.log("The third bit of " + (number).toString(2) + " is " + bit + ".");
+            //print on screen
+            jsConsole.writeLine("The third bit of " + (number).toString(2) + " is " + bit + ".");
+        }
+
+        (function () {
+            var number = new Number(prompt("05.Please enter the number or use the default", 7));
+            if (number != null) {
+                CheckThirdBit(number);
+            }
+        })();
+
+
+        //06. Write an expression that checks if given print (x,  y) is within a circle K(O, 5).
+
+        jsConsole.writeLine("<br/>06. Write an expression that checks if given print (x,  y) is within a circle K(O, 5).<br/>");
+
+        function IsPointWithinACircle(coordinateX, coordinateY) {
+            //Check if the point is within the circle
+            var checkValues = ((Math.pow(coordinateX, 2) + Math.pow(coordinateY, 2)) <= Math.pow(5, 2)) ? true : false;
+            var isWithin = (checkValues === true) ? "within" : "not within";
+
+            console.log("A point with coordinates (" + coordinateX + "," + coordinateY + ") is " + isWithin + " a circle K(0, 5).");
+            //print on screen
+            jsConsole.writeLine("A point with coordinates (" + coordinateX + "," + coordinateY + ") is " + isWithin + " a circle K(0, 5).");
+        }
+
+        (function () {
+            var coordinateX = new Number(prompt("06.Please enter the coordinates of the point  or use the default.\nCoordinate X", 5));
+            var coordinateY = new Number(prompt("Coordinate Y", 6));
+            if (coordinateX != null && coordinateY != null) {
+                IsPointWithinACircle(coordinateX, coordinateY);
+            }
+        })();
+
+        //07. Write an expression that checks if given positive integer number n (n ≤ 100) is prime. E.g. 37 is prime.
+
+        jsConsole.writeLine("<br/>07. Write an expression that checks if given positive integer number n (n ≤ 100) is prime. E.g. 37 is prime.<br/>");
+
+        function PrimeNumberCheck(number) {
+            var isPrimeSecond = true;
+            for (var i = 2; i <= Math.sqrt(number) ; i++) {
+                if (number % i === 0) {
+                    isPrimeSecond = false;
+                }
+            }
+            if (isPrimeSecond === true) {
+                console.log(number + " is prime number.");
+                jsConsole.writeLine(number + " is prime number.");
+            }
+            else if (isPrimeSecond === false) {
+                console.log(number + " is not prime number.");
+                jsConsole.writeLine(number + " is not prime number.");
+            }
+        }
+
+        (function () {
+            var number = new Number(prompt("07.Please enter the number or use the default.", 37));
+            if (number != null) {
+                PrimeNumberCheck(number);
+            }
+        })();
+
+        //08. Write an expression that calculates trapezoid's area by given sides a and b and height h.
+
+        jsConsole.writeLine("<br/>08. Write an expression that calculates trapezoid's area by given sides a and b and height h.<br/>");
+
+        function TrapeziodArea(sideA, sideB, height) {
+            if (sideA <= 0 || sideB <= 0 || height <= 0) {
+                console.log("Invalid input data. All values must be higher than 0.");
+                jsConsole.writeLine("Invalid input data.All values must be higher than 0.");
+            }
+            else {
+                var trapezoidArea = ((sideA + sideB) / 2) * height;
+                console.log("The area of trapzeoid with side " + sideA + " and side " + sideB + " and height " + height + " is " + trapezoidArea);
+                jsConsole.writeLine("The area of trapzeoid with side " + sideA + " and side " + sideB + " and height " + height + " is " + trapezoidArea);
+            }
+        }
+
+        (function () {
+            var sideA = new Number(prompt("08.Please enter the sides and the hight of the trapezoid or use the default.\n Side A", 5));
+            var sideB = new Number(prompt("Side B", 4));
+            var height = new Number(prompt("Height", 3));
+            if (sideA != null && sideB != null && sideA != height) {
+                TrapeziodArea(sideA, sideB, height);
+            }
+        })();
+
+        //09. Write an expression that checks for given point (x, y) if it is within the circle K( (1,1), 3) and out of the rectangle R(top=1, left=-1, width=6, height=2).
+
+        jsConsole.writeLine("<br/>09. Write an expression that checks for given point (x, y) if it is within the circle K( (1,1), 3) and out of the rectangle R(top=1, left=-1, width=6, height=2).<br/>");
+
+
+        function IsPointWithinCircleAndOutOfRectangle(coordinateX, coordinateY) {
+            // Circle coordinates K( (1,1), 3)
+            var xCircle = 1;
+            var yCircle = 1;
+            var radiusCircle = 3;
+
+            //Rectangle coordinates R(top=1, left=-1, width=6, height=2)
+            var xLeftRectangle = -1;
+            var yLeftRectangle = 1;
+            var width = 6;
+            var height = 2;
+            var xRightRectangle = xLeftRectangle + width;
+            var yRightRectangle = yLeftRectangle - height;
+
+            //Check if the point is within the circle
+            var checkInCircle = ((Math.pow(coordinateX, 2) + Math.pow(coordinateY, 2)) <= Math.pow(radiusCircle, 2)) ? true : false;
+            var isWithinCircle = (checkInCircle == true) ? "within" : "out of";
+
+            //Check if the point is within the rectangle
+            var checkOutOfRectangle = ((coordinateX < xLeftRectangle || coordinateX > xRightRectangle) || (coordinateY > yLeftRectangle || coordinateY < yRightRectangle));
+            var isWithinRectangle = (checkOutOfRectangle == true) ? "out of" : "within";
+
+            console.log("Point with coordinates (" + coordinateX + "," + coordinateY + ") is " + isWithinCircle + " a circle K( (1,1), 3) and  " + isWithinRectangle + " \nrectangle R(top=1, left=-1, width=6, height=2).");
+            //print on screen
+            jsConsole.writeLine("Point with coordinates (" + coordinateX + "," + coordinateY + ") is " + isWithinCircle + " a circle K( (1,1), 3) and  " + isWithinRectangle + "\nrectangle R(top=1, left=-1, width=6, height=2).");
+        }
+
+        (function () {
+            var coordinateX = new Number(prompt("09.Please enter the coordinates of the point or use the default.\nCoordinate X", 7));
+            var coordinateY = new Number(prompt("Coordinate Y", 3));
+            if (coordinateX != null && coordinateY != null) {
+                IsPointWithinCircleAndOutOfRectangle(coordinateX, coordinateY);
+            }
+        })();
+
+    </script>
+</body>
+</html>
