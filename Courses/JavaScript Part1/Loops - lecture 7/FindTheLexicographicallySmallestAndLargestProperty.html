@@ -1,0 +1,52 @@
+﻿<html>
+<head>
+    <title>Loops - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a script that finds the lexicographically smallest and largest property 
+	 * in document, window and navigator objects
+	 */
+
+	function PrintMinAndMaxLexicographicallyProperties(obj) {
+			
+			//set the inital min and max values of the properties
+			for (var property in obj) {
+				var min = property;
+				var max = property;
+				break;
+			}
+
+            for (var property in obj) {
+                    if (min > property) {
+                        min = property;
+                    }
+
+                    if (max < property) {
+                        max = property;
+                    }
+                }
+            
+			
+			console.log("The current object is: " + obj);
+            console.log("The min property is: " + min);
+            console.log("The max property is: " + max);
+			
+			document.getElementById("answer").innerHTML += "The current object is: " + obj + "\n";
+			document.getElementById("answer").innerHTML += "The min property is: " + min + "\n";
+			document.getElementById("answer").innerHTML += "The min property is: " + max + "\n";
+		}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		    PrintMinAndMaxLexicographicallyProperties(document);
+            PrintMinAndMaxLexicographicallyProperties(window);
+            PrintMinAndMaxLexicographicallyProperties(navigator);
+	}));
+    </script>
+</body>
+</html>

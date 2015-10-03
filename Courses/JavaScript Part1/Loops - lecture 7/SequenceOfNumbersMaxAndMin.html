@@ -1,0 +1,58 @@
+﻿<html>
+<head>
+    <title>Loops - Homework</title>
+</head>
+<body>
+	<label for="numberN">Your input /separate the numbers with comma/:</label>
+	<br />
+	<input id="numberN">
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a script that finds the max and min number from a sequence of numbers
+	 */
+
+	function SequenceOfNumbersMaxAndMin(numbers) {
+	
+		if (numbers === undefined) {
+			console.log("Please enter at least one number!");
+		} else {
+			//Convert the input to array
+			var numbersArray = numbers.split(",");
+			var maxValue = Number.MIN_VALUE;
+			var minValue = Number.MAX_VALUE;
+			
+			console.log("The sequence of numbers is:" + numbers.toString(","));
+		
+			document.getElementById("answer").innerHTML = "The sequence of numbers is:" + numbers.toString(",") + "\n";
+
+			for (var i = 0; i <= numbersArray.length; i++)
+			{
+				if (parseInt(numbersArray[i]) > maxValue) {
+					maxValue = numbersArray[i];
+					console.log(numbersArray[i]);
+				} 
+				if (parseInt(numbersArray[i]) < minValue) {
+					minValue = numbersArray[i];
+					console.log(numbersArray[i]);
+				}
+			}
+			
+			console.log("Max value = " + maxValue + ". Min value = " + minValue +".");
+			
+			document.getElementById("answer").innerHTML = "Max value = " + maxValue + ". Min value = " + minValue +".";
+		}
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		
+		var squenceNumbers = document.getElementById("numberN").value;
+		
+		SequenceOfNumbersMaxAndMin(squenceNumbers);
+	}));
+    </script>
+</body>
+</html>

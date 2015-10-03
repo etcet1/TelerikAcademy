@@ -1,0 +1,46 @@
+﻿<html>
+<head>
+    <title>Loops - Homework</title>
+</head>
+<body>
+	<label for="numberN">Your input:</label>
+	<br />
+	<input id="numberN">
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a program that prints all the numbers from 1 to N, that are not divisible by 3 and 7 at the same time.
+	 */
+
+	function PrintNumbersNotDivisibleBy3And7(numberN) {
+	
+		if (isNaN(numberN) || numberN === undefined) {
+			console.log("Please enter a number!");
+		} else {
+			console.log("The N number is:" + numberN);
+			
+			document.getElementById("answer").innerHTML = "The N number is:" + numberN + "\n";
+			
+			for (var i = 1; i <= numberN; i++)
+			{
+				if (i % 3 !== 0 && i % 7 !== 0)	{
+					console.log("A number which is not divisible by 3 and 7 is " + i);
+
+					document.getElementById("answer").innerHTML += "A number which is not divisible by 3 and 7 is " + i + "\n";
+				}
+			}
+		}
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+
+		var testNumber = parseInt(document.getElementById("numberN").value);
+		
+		PrintNumbersNotDivisibleBy3And7(testNumber);
+	}));
+    </script>
+</body>
+</html>
