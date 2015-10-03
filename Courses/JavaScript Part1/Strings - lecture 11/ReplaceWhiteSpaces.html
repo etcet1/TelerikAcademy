@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a function that replaces non breaking white-spaces in a text with &nbsp;
+	 */
+
+	function replaceSpaceWithSymbol(inputText, replacement) {
+		var replacedText = "";
+
+		for (i = 0; i < inputText.length; i++) {
+			if (inputText[i] == " ") {
+				replacedText += replacement;
+			} else {
+				replacedText += inputText[i];
+			}
+		}
+		return replacedText;
+	}
+
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		var text = "Write a function that extracts the content of a html page given as text. The function should return text.";
+
+		var result = replaceSpaceWithSymbol(text, "&nbsp;");
+				
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(result);
+		document.getElementById("answer").innerHTML = result;
+
+	}));
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a JavaScript function that finds how many times a substring is
+	 * contained in a given text (perform case insensitive search).
+	 * Example: The target substring is "in". The text is as follows:
+	 * The result is: 9.
+	 */
+
+	function countSubstring(inputString, searchedSubstring) {
+		var testedText = inputString.toLowerCase();
+		var substring = searchedSubstring.toLowerCase();
+		var substringPosition = 0;
+		var substringCount = 0;
+
+		while (testedText.indexOf(substring, substringPosition) !== -1) {
+			if (testedText.indexOf(substring, substringPosition) > 0) {
+				substringCount++;
+				var currentPosition = testedText.indexOf(substring, substringPosition);
+				substringPosition = currentPosition + substring.length - 1;
+			}
+		}
+
+		return substringCount;
+	}
+
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		var text = "We are living in an yellow submarine. We don't have anything else." +
+				"Inside the submarine is very tight. So we are drinking all the day. We will move out of it in 5 days.";
+		
+		var substring = "in";
+				
+		var result = countSubstring(text, substring);
+				
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(substring + " -> Result: " + result);
+		document.getElementById("answer").innerHTML = substring + " -> Result: " + result + "\n";
+	}));
+    </script>
+</body>
+</html>

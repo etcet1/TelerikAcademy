@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * You are given a text. Write a function that changes the text in all regions:
+	 * <upcase>text</upcase> to uppercase.
+	 * <lowcase>text</lowcase> to lowercase
+	 * <mixcase>text</mixcase> to mix casing(random)
+	 */
+
+
+	function ChangeCase(inputText, currentCase)
+	{
+		var indexStart = inputText.indexOf(currentCase);
+		switch (currentCase) {
+			case "<upcase>":
+				var currentCaseCloseTag = "</upcase>";
+				while (indexStart > -1) {
+					var insideText = inputText.substring(indexStart + currentCase.length, inputText.indexOf(currentCaseCloseTag, indexStart));
+					var upperText = insideText.toUpperCase();
+					inputText = inputText.replace(insideText, upperText);
+					inputText = inputText.replace(currentCase, "");
+					inputText = inputText.replace(currentCaseCloseTag, "");
+					indexStart = inputText.indexOf(currentCase, indexStart + 1);
+				}
+				break;
+			case "<lowcase>":
+				var currentCaseCloseTag = "</lowcase>";
+				while (indexStart > -1) {
+					var insideText = inputText.substring(indexStart + currentCase.length, inputText.indexOf(currentCaseCloseTag, indexStart));
+					var lowerText = insideText.toLowerCase();
+					inputText = inputText.replace(insideText, lowerText);
+					inputText = inputText.replace(currentCase, "");
+					inputText = inputText.replace(currentCaseCloseTag, "");
+					indexStart = inputText.indexOf(currentCase, indexStart + 1);
+				}
+				break;
+			case "<mixcase>":
+				var currentCaseCloseTag = "</mixcase>";
+
+				while (indexStart > -1) {
+					var insideText = inputText.substring(indexStart + currentCase.length, inputText.indexOf(currentCaseCloseTag, indexStart));
+					var mixedText = new String(insideText);
+					for (var i = 0; i < mixedText.length; i++) {
+						if (i % 2 === 0) {
+							mixedText = mixedText.replace(mixedText[i], mixedText[i].toUpperCase());
+						} else {
+							mixedText = mixedText.replace(mixedText[i], mixedText[i].toLowerCase());
+						}
+					}
+					inputText = inputText.replace(insideText, mixedText);
+					inputText = inputText.replace(currentCase, "");
+					inputText = inputText.replace(currentCaseCloseTag, "");
+					indexStart = inputText.indexOf(currentCase, indexStart + 1);
+				}
+				break;
+		}
+		return inputText;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		var text = "We are <mixcase>living</mixcase> in a <upcase>yellow submarine</upcase>." +
+        "We <mixcase>don't</mixcase> have <lowcase>anything</lowcase> else.";
+
+		var changedText = new String(text);
+		changedText = ChangeCase(changedText, "<upcase>");
+		changedText = ChangeCase(changedText, "<lowcase>");
+		changedText = ChangeCase(changedText, "<mixcase>");
+				
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(text);
+		document.getElementById("answer").innerHTML = text + "\n\n";
+		console.log(changedText);
+		document.getElementById("answer").innerHTML += changedText;
+	}));
+    </script>
+</body>
+</html>

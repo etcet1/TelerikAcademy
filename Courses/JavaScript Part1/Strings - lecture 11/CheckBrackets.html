@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a JavaScript function to check if in a given expression the brackets are put correctly.
+	 * Example of correct expression: ((a+b)/5-d).
+	 * Example of incorrect expression: )(a+b)).
+	 */
+
+		function checkBrackets(expression) {
+			var openedBrackets = 0;
+			var closedBrackets = 0;
+
+			for (i = 0; i < expression.length; i++) {
+		 
+				if (expression[i] == "(") {
+					openedBrackets++;
+					continue;
+				}
+				if (expression[i] == ")" && openedBrackets !== 0) {
+					closedBrackets++;
+					continue;
+				}
+				if (expression[i] == ")") {
+					return false;
+				}
+			}
+			if (openedBrackets === closedBrackets) {
+				return true;
+			}else{
+				return false;
+			}
+	}
+
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		var expressionOne = "((a+b)/5-d)";
+		var expressionTwo = ")(a+b))";
+
+		
+		var resultOne = checkBrackets(expressionOne);
+		var resultTwo = checkBrackets(expressionTwo);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(expressionOne + " -> Result: " + resultOne);
+		document.getElementById("answer").innerHTML = expressionOne + " -> Result: " + resultOne + "\n";
+		console.log(expressionTwo + " -> Result: " + resultTwo);
+		document.getElementById("answer").innerHTML += expressionTwo + " -> Result: " + resultTwo;
+
+	}));
+    </script>
+</body>
+</html>

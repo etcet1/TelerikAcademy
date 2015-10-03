@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a function that extracts the content of a html page given as text. 
+	 * The function should return anything that is in a tag, without the tags.
+	 */
+
+	function removeHtml(inputText) {
+		var tagStart = inputText.indexOf("<");
+	 
+		while (tagStart > -1) {
+			var tagEnd = inputText.indexOf(">", tagStart);
+			var tagContent = inputText.substring(tagStart, tagEnd + 1);
+			inputText = inputText.replace(tagContent, "");
+			tagStart = inputText.indexOf("<", 0);
+		}
+		return inputText;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		var text = "<html><head><title>Sample site</title></head><body><div>text<div>more text</div>and more...</div>in body</body></html>";
+		
+		var removedHtmlText = removeHtml(text);
+				
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(removedHtmlText);
+		document.getElementById("answer").innerHTML = removedHtmlText;
+
+	}));
+    </script>
+</body>
+</html>

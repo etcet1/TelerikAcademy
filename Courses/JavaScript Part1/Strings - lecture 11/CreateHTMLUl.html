@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+   <div data-type="template" id="list-item">
+        <strong>-{name}-</strong> <span>-{age}-</span>
+    </div>
+	<button id="button">Test it!</button>
+	<br />
+	<script>
+		/*
+		 * Write a function that creates a HTML UL using a template for every HTML LI. 
+		 * The source of the list should an array of elements. 
+		 * Replace all placeholders marked with –{…}–   with the value of the corresponding property of the object. 
+		 */
+
+        function generateList(people, template) {			
+            var list = "<ul>";
+			
+            for (var i = 0; i < people.length; i++) {
+                list += "<li>";
+                list += template.replace("-{name}-", people[i]["name"]);
+                list = list.replace("-{age}-", people[i]["age"]);
+                list += "</li>";
+            }
+			
+            list += "</ul>";
+            return list;
+        }
+
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		
+		var people = [
+			{ name: "Pesho", age: 35 },
+			{ name: "George", age: 24 },
+			{ name: "Bai Ivan", age: 49 }
+		];
+		
+		var template = document.getElementById("list-item").innerHTML.valueOf();
+		var peopleList = generateList(people, template);
+		
+		//print the answer
+		console.log(peopleList);
+		document.getElementById("list-item").innerHTML = peopleList;
+	}));
+    </script>
+</body>
+</html>

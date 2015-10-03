@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a function that formats a string using placeholders:
+	 * var str = stringFormat("Hello {0}!","Peter");
+	 * //str = "Hello Peter!";
+	 * The function should work with up to 30 placeholders and all types
+	 */
+
+	function stringFormat()
+	{
+		var inputText = arguments[0];
+		var wordsArr = [];
+		for (i = 1; i < arguments.length;i++){
+			wordsArr[i-1] = arguments[i];
+		}
+
+		for (j=0;j<wordsArr.length;j++){
+			inputText = inputText.replace("{" + j + "}",wordsArr[j]);
+		}
+		
+		return inputText;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		var result = stringFormat("Greeting: {1} {0}!","Pesho","Hello");
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(result);
+		document.getElementById("answer").innerHTML = result;
+
+	}));
+    </script>
+</body>
+</html>

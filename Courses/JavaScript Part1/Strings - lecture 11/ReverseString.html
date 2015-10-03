@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a JavaScript function reverses string and returns itExample: "sample"  "elpmas".
+	 */
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+
+		if (!String.prototype.reverse) {
+			String.prototype.reverse = function() {
+				var reversedString = "";
+				for (i = this.length - 1; i >= 0; i--) {
+					reversedString += this[i];
+				}
+				return reversedString;
+			};
+		}
+
+		var string = "sample string";
+		
+		var result = string.reverse();
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(string + " -> Result: " + result);
+		document.getElementById("answer").innerHTML = string + " -> Result: " + result;
+
+	}));
+    </script>
+</body>
+</html>

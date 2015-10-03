@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a script that parses an URL address given in the format:
+	 * [protocol]://[server]/[resource
+	 * and extracts from it the [protocol], [server] and [resource] elements. 
+	 * Return the elements in a JSON object. For example from the URL http://www.devbg.org/forum/index.php the following information should be extracted:
+	 * {protocol: "http", server: "www.devbg.org",  resource: "/forum/index.php"}
+	 */
+
+	function parseUrl(url) {
+		var parsedURL = {};
+		
+		parsedURL.protocol = url.substring(0, url.indexOf("://"));
+		parsedURL.server = url.substring( url.indexOf("://") + 3, url.indexOf("/", url.indexOf("://") + 3));
+		parsedURL.resource = url.substring( parsedURL.protocol.length + parsedURL.server.length + 3, url.length);
+		parsedURL.toString = function(){
+			return "Protocol: " + parsedURL.protocol + "\nServer: " + parsedURL.server + "\nResource: " + parsedURL.resource;
+		}
+		return parsedURL;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		var url = "http://www.devbg.org/forum/index.php";
+
+		
+		var parsedUrl = parseUrl(url);
+				
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(parsedUrl);
+		document.getElementById("answer").innerHTML = parsedUrl.toString();
+
+	}));
+    </script>
+</body>
+</html>

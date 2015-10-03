@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a function for extracting all email addresses from given text. 
+	 * All substrings that match the format <identifier>@<host>…<domain> should be recognized as emails. 
+	 * Return the emails as array of strings.
+	 */
+
+	function extractEmail(inputText) {
+		var emailsArray = [];
+		var index = inputText.indexOf("@");
+		
+		while (index > -1) {
+			if (inputText[index - 1] != " " && inputText[index + 1] != " ") {
+				var identifier = inputText.substring(inputText.lastIndexOf(" ", index - 1), index);
+				var host = inputText.substring(index + 1, inputText.indexOf(".", index + 1));
+				
+				//there is a bug if there is no space after the email
+				var domain = inputText.substring(inputText.indexOf(".", index + 1) + 1, inputText.indexOf(" ", inputText.indexOf(".", index + 1) + 1));
+				var email = identifier + "@" + host + "." + domain;
+				emailsArray.push(email);
+				index = inputText.indexOf("@", index + 1);
+			}
+		}
+		
+		return emailsArray;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		var text = "Email pesho.peshev@abv.bg or batka134@gmail.bg and even ba112ceto@mail.com ";
+		
+		var emails = extractEmail(text);
+				
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(emails);
+		document.getElementById("answer").innerHTML = emails;
+	}));
+    </script>
+</body>
+</html>

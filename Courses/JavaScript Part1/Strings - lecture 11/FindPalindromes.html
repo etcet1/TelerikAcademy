@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write a program that extracts from a given text all palindromes, e.g. "ABBA", "lamal", "exe".
+	 */
+
+	function findPolindromes(inputText) {
+		
+		var palindromes = [];
+		inputText = inputText.toLowerCase();
+		inputText = inputText.replace(".", " ").replace("!", " ").replace("?", " ").replace(",", " ");
+		var wordsArr = inputText.split(" ");
+		
+		for (var i = 0; i < wordsArr.length; i++) {
+			var strBuilder = [];
+			
+			for (var j = wordsArr[i].length - 1; j >= 0; j--) {
+				strBuilder.push(wordsArr[i][j]);
+			}
+			if (strBuilder.join("") === wordsArr[i]) {
+				palindromes.push(wordsArr[i]);
+			}
+		}
+		
+		return palindromes;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+			
+		var text = "text with some strange palindrome words like aua abba or lamal";
+
+		var palindromes = findPolindromes(text);
+				
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(text + "\nPalindromes: " + palindromes);
+		document.getElementById("answer").innerHTML = text + "\nPalindromes: " + palindromes;
+	}));
+    </script>
+</body>
+</html>
