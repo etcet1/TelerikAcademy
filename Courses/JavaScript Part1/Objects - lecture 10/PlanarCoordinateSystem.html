@@ -1,0 +1,91 @@
+﻿<html>
+<head>
+    <title>Objects - Homework</title>
+</head>
+<body>
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 * Write functions for working with shapes in  standard Planar coordinate system
+	 *Points are represented by coordinates P(X, Y)
+	 *Lines are represented by two points, marking their beginning and ending
+	 *L(P1(X1,Y1), P2(X2,Y2))
+	 *Calculate the distance between two points
+	 *Check if three segment lines can form a triangle
+	 */
+
+	function Point(x, y) {
+		return {
+			coordinateX: x,
+			coordinateY: y,
+			distance: function(otherPoint) {
+				return Math.sqrt((this.coordinateX - otherPoint.coordinateX) * (this.coordinateX - otherPoint.coordinateX)
+						+ (this.coordinateY - otherPoint.coordinateY) * (this.coordinateY - otherPoint.coordinateY));
+			},
+			toString: function() {
+				return ("point with coodinates X:" + this.coordinateX + " and Y:" + this.coordinateY);
+			}
+		};
+	}
+
+	function Line(pointOne, pointTwo) {
+				var startPoint = new Point(pointOne.coordinateX, pointOne.coordinateX);
+				var endPoint = new Point( pointTwo.coordinateY, pointTwo.coordinateY);
+				
+		return {
+			startX: pointOne.coordinateX,
+			startY: pointOne.coordinateY,
+			endX: pointTwo.coordinateX,
+			endY: pointTwo.coordinateY,
+			length: function() {
+				return startPoint.distance(endPoint);
+			},
+			toString: function() {
+				return "The line segment has start " + startPoint + " and end " + endPoint;
+			}
+		};
+	}
+
+	function isTrianglePossible(lineOne, lineTwo, lineThree) {
+		var sideA = lineOne.length();
+		var sideB = lineTwo.length();
+		var sideC = lineThree.length();
+		
+		if ((sideA + sideB > sideC) && (sideA + sideC > sideB) && (sideB + sideC > sideA)) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	(function() {
+		var a = new Point(0, 0);
+		var b = new Point(4, 3);
+		var c = new Point(4, 5);
+
+		console.log(a.toString());
+		console.log(b.toString());
+		console.log(c.toString());
+		
+		document.getElementById("answer").innerHTML += a.toString() + "\n";
+		document.getElementById("answer").innerHTML += b.toString() + "\n";
+		document.getElementById("answer").innerHTML += c.toString() + "\n";
+
+		var segmentA = new Line(b, c);
+		var segmentB = new Line(a, c);
+		var segmentC = new Line(a, b);
+
+		console.log(segmentA + " and length: " + segmentA.length());
+		console.log(segmentB + " and length: " + segmentB.length());
+		console.log(segmentC + " and length: " + segmentC.length());
+		
+		document.getElementById("answer").innerHTML += segmentA + " and length: " + segmentA.length() + "\n";
+		document.getElementById("answer").innerHTML += segmentB + " and length: " + segmentB.length() + "\n";
+		document.getElementById("answer").innerHTML += segmentC + " and length: " + segmentC.length() + "\n";
+
+		console.log("Do these line segments form a triangle? " + isTrianglePossible(segmentA, segmentB, segmentC));
+		document.getElementById("answer").innerHTML += "Do these line segments form a triangle? " + isTrianglePossible(segmentA, segmentB, segmentC) + "\n";
+	})();
+    </script>
+</body>
+</html>

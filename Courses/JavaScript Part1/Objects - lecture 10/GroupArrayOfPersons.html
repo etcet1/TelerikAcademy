@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+    <title>Objects - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	* Write a function that groups an array of persons by age, first or last name. The function must return an associative array, with keys - the groups, and values -arrays with persons in this groups
+	* Use function overloading (i.e. just one function)
+	*/
+
+	function group(personsArray, property) {
+		var result = {};
+
+		personsArray.forEach(function(person) {
+			var value = person[property];
+
+			result[property] = result[property] || [];
+
+			result[property].push(person);
+		});
+
+		return result;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		
+		var persons = [
+			{firstname: "Bay", lastname: "Ivan", age: 81},
+			{firstname: "Gosho", lastname: "Petrov", age: 32},
+			{firstname: "Bay", lastname: "Pesho", age: 61}
+		];
+
+		var groupedByFname = group(persons, "firstname");
+		var groupedByLname = group(persons, "lastname");
+		var groupedByAge = group(persons, "age");
+		
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log(groupedByFname);
+		document.getElementById("answer").innerHTML = groupedByFname;
+				console.log(groupedByLname);
+		document.getElementById("answer").innerHTML = groupedByLname;
+				console.log(groupedByAge);
+		document.getElementById("answer").innerHTML = groupedByAge;
+
+	}));
+    </script>
+</body>
+</html>

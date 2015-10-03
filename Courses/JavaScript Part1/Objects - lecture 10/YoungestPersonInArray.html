@@ -1,0 +1,45 @@
+﻿<html>
+<head>
+    <title>Objects - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 *Write a function that finds the youngest person in a given array of persons and prints his/hers full name
+	 */
+
+	function findYoungestPerson(personsArray) {
+		var personAge = 200;
+		for (var i = 0; i < personsArray.length; i++) {
+			if (personsArray[i].age < personAge) {
+				personAge = personsArray[i].age;
+			}
+		}
+		return personAge;
+	}
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		
+		var persons = [
+			{firstname: "Gosho", lastname: "Petrov", age: 32},
+			{firstname: "Bay", lastname: "Ivan", age: 81},
+			{firstname: "Bay", lastname: "Pesho", age: 61}
+		];
+		
+		var result = findYoungestPerson(persons);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log("The youngest person is " + result + " years old");
+		document.getElementById("answer").innerHTML = "The youngest person is " + result + " years old";
+
+	}));
+    </script>
+</body>
+</html>

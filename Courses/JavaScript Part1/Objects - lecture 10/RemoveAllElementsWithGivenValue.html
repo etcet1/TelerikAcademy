@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+    <title>Objects - Homework</title>
+</head>
+<body>
+	<label for="input">Your array:</label>
+	<br />
+	<input id="input"></input>
+	<br />
+	<label for="input">Your value:</label>
+	<br />
+	<input id="input2"></input>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+	
+		if (!Array.prototype.remove) {
+			Array.prototype.remove = function(value) {
+				if (this === null) {
+					throw new "error";
+				}
+
+				var size = this.length;
+				
+				for (var i = 0; i < size; i++) {
+					if (this[i] == value) {
+						this.splice(i, 1);
+						size--;
+						i--;
+					}
+				}
+
+				return this;
+			};
+		}
+		    
+		var inputString = document.getElementById("input").value;
+		
+		var element = document.getElementById("input2").value;
+
+		//convert the string to array and parse integers
+		var arrayNumbers = [];
+		
+		var tempNumberArray = inputString.split(",");
+		
+		for (var i = 0; i < tempNumberArray.length; i++) {
+			var tempNumber = parseInt(tempNumberArray[i]);
+			
+			if(!isNaN(tempNumber)) {
+				arrayNumbers[i] = tempNumber;
+			}
+		} 
+				
+		var result = arrayNumbers.remove(element);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log("Result: " + result);
+		document.getElementById("answer").innerHTML = "Result: " + result;
+
+	}));
+    </script>
+</body>
+</html>

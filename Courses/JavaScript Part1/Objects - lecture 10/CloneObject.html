@@ -1,0 +1,75 @@
+﻿<html>
+<head>
+    <title>Objects - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	* Write a function that makes a deep copy of an object
+	*The function should work for both primitive and reference types
+	*/
+
+	//source - http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object
+
+	function cloneObject(object) {
+		// Handle the 3 simple types, and null or undefined
+		if (null == object || "object" != typeof object)
+		{
+			return object;
+		}
+
+		// Date
+		if (object instanceof Date) {
+			var copiedObject = new Date();
+			copiedObject.setTime(object.getTime());
+			return copiedObject;
+		}
+
+		// Array
+		if (object instanceof Array) {
+			var copiedObject = [];
+			for (var i = 0, len = object.length; i < len; i++) {
+				copiedObject[i] = cloneObject(object[i]);
+			}
+			return copiedObject;
+		}
+
+		// Object
+		if (object instanceof Object) {
+			var copiedObject = {};
+			for (var attr in object) {
+				if (object.hasOwnProperty(attr))
+					copiedObject[attr] = cloneObject(object[attr]);
+			}
+			return copiedObject;
+		}
+
+		return copiedObject;
+	}
+	
+	
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		
+		var testObject = {
+			property1: "testProperty",
+			staus: false,
+			counter: 34			
+		}
+		
+		var result = cloneObject(testObject);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log("Result: " + result);
+		document.getElementById("answer").innerHTML = "Result: " + result;
+
+	}));
+    </script>
+</body>
+</html>

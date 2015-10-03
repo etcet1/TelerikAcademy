@@ -1,0 +1,42 @@
+﻿<html>
+<head>
+    <title>Objects - Homework</title>
+</head>
+<body>
+	<button id="button">Test it!</button>
+	<br />
+	<textarea id="answer" style="width:400px;height:300px;"></textarea>
+	<script>
+	/*
+	 *Write a function that checks if a given object contains a given property
+	 */
+
+	function hasProperty(object, property) {
+		return object.hasOwnProperty(property);
+	}
+
+
+	//add listener for click event
+	document.getElementById("button").addEventListener('click', (function() {
+		
+		var testObject = {
+			property:"emptyProperty",
+			legth:150,
+			name:"Test"
+		};
+
+		var property = "name";
+		
+		var result = hasProperty(testObject, property);
+		
+		//clean the content of the answer field 
+		document.getElementById("answer").innerHTML = "";
+		
+		//print the answer
+		console.log("The object has property \"" + property + "\": " + result);
+		document.getElementById("answer").innerHTML = "The object has property \"" + property + "\": " + result;
+
+	}));
+    </script>
+</body>
+</html>
